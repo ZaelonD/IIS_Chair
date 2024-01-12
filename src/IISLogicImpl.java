@@ -1,5 +1,7 @@
+import enums.BackAngle;
 import enums.MarketingTask;
 import enums.OperatingParameters;
+import enums.TechnicalSpecifications;
 
 import java.util.Scanner;
 
@@ -8,8 +10,10 @@ public class IISLogicImpl {
     private final Messages messages = new Messages();
 
     void start() {
-        MarketingTask marketingTask = chooseAMarketingTask();
-        OperatingParameters operatingParameters = chooseOperatingParameter();
+        var mt = chooseAMarketingTask();
+        var op = chooseOperatingParameter();
+        var ts = chooseTechnicalSpecifications();
+        var an = chooseBackAngle();
     }
 
     MarketingTask chooseAMarketingTask() {
@@ -29,7 +33,7 @@ public class IISLogicImpl {
     }
 
     OperatingParameters chooseOperatingParameter() {
-        OperatingParameters choice = OperatingParameters.NULL_PARAMETER;
+        var choice = OperatingParameters.NULL_PARAMETER;
         while (choice.equals(OperatingParameters.NULL_PARAMETER)) {
             messages.printOperatingParametersMessage();
             int answer = scanner.nextInt();
@@ -41,5 +45,33 @@ public class IISLogicImpl {
                 System.err.println("Данного варианта не существует! Попробуйте еще раз.\n");
         }
         return choice;
+    }
+
+    TechnicalSpecifications chooseTechnicalSpecifications() {
+        var choice = TechnicalSpecifications.TYPE_NULL;
+        while (choice.equals(TechnicalSpecifications.TYPE_NULL)) {
+            messages.printTechnicalSpecificationsMessage();
+            int answer = scanner.nextInt();
+            if (answer == TechnicalSpecifications.values()[0].ordinal() + 1)
+                choice = TechnicalSpecifications.TYPE_3D;
+            else if (answer == TechnicalSpecifications.values()[1].ordinal() + 1)
+                choice = TechnicalSpecifications.TYPE_4D;
+            else
+                System.err.println("Данного варианта не существует! Попробуйте еще раз.\n");
+        }
+        return choice;
+    }
+
+    BackAngle chooseBackAngle() {
+        BackAngle backAngle = BackAngle.NULL_ANGLE;
+        while (backAngle.equals(BackAngle.NULL_ANGLE)) {
+            messages.printBackAngle();
+            for (int i = 0, insertAngle = scanner.nextInt(); i < BackAngle.values().length - 1 && insertAngle >= 140 && insertAngle <= 170; i++)
+                if (insertAngle == BackAngle.values()[i].getValue())
+                    backAngle = BackAngle.values()[i];
+            if (backAngle.equals(BackAngle.NULL_ANGLE))
+                System.err.println("Данного варианта не существует! Попробуйте еще раз.\n");
+        }
+        return backAngle;
     }
 }

@@ -1,6 +1,7 @@
 import enums.MarketingTask;
 import enums.OperatingParameters;
 import enums.Sections;
+import enums.TechnicalSpecifications;
 
 public class Messages {
     void printGeneralTitleMessage() {
@@ -18,5 +19,16 @@ public class Messages {
         System.out.println("1. " + OperatingParameters.OFFICE.getDescription());
         System.out.println("2. " + OperatingParameters.GAME.getDescription());
         System.out.println("Ваш выбор: ");
+    }
+
+    void printTechnicalSpecificationsMessage() {
+        System.out.println(Sections.SECTION3.getDescription());
+        System.out.println("1. " + TechnicalSpecifications.TYPE_3D.getDescription());
+        System.out.println("2. " + TechnicalSpecifications.TYPE_4D.getDescription());
+        System.out.println("Ваш выбор: ");
+    }
+
+    void printBackAngle() {
+        System.out.println(Sections.SECTION4.getDescription());
     }
 }

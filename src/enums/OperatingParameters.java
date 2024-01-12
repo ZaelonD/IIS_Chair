@@ -2,9 +2,7 @@ package enums;
 
 public enum OperatingParameters {
     OFFICE("Офисное"),
-    GAME("Игровое"),
-    NULL_PARAMETER("Пусто");
-
+    GAME("Игровое");
     private final String description;
 
     OperatingParameters(String description) {
@@ -14,4 +12,7 @@ public enum OperatingParameters {
         return description;
     }
 
+    public static int getLength() {
+        return OperatingParameters.values().length;
+    }
 }

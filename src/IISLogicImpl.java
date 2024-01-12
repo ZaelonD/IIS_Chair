@@ -17,59 +17,61 @@ public class IISLogicImpl {
     }
 
     MarketingTask chooseAMarketingTask() {
-        MarketingTask choice = MarketingTask.NULL_PRODUCT;
+        MarketingTask choice = null;
+        boolean isRight = true;
         messages.printGeneralTitleMessage();
-        while (choice.equals(MarketingTask.NULL_PRODUCT)) {
+        while (isRight) {
             messages.printMarketingTaskMessage();
             int answer = scanner.nextInt();
-            if (answer == MarketingTask.values()[0].ordinal() + 1)
-                choice = MarketingTask.BEST_PRODUCT;
-            else if (answer == MarketingTask.values()[1].ordinal() + 1)
-                choice = MarketingTask.THE_MOST_ERGONOMIC_PRODUCT;
-            else
+            if (answer > 0 && answer <= MarketingTask.getLength()) {
+                choice = MarketingTask.values()[answer - 1];
+                isRight = false;
+            } else
                 System.err.println("Данного варианта не существует! Попробуйте еще раз.\n");
         }
         return choice;
     }
 
     OperatingParameters chooseOperatingParameter() {
-        var choice = OperatingParameters.NULL_PARAMETER;
-        while (choice.equals(OperatingParameters.NULL_PARAMETER)) {
+        OperatingParameters choice = null;
+        boolean isRight = true;
+        while (isRight) {
             messages.printOperatingParametersMessage();
             int answer = scanner.nextInt();
-            if (answer == OperatingParameters.values()[0].ordinal() + 1)
-                choice = OperatingParameters.OFFICE;
-            else if (answer == OperatingParameters.values()[1].ordinal() + 1)
-                choice = OperatingParameters.GAME;
-            else
+            if (answer > 0 && answer <= OperatingParameters.getLength()) {
+                choice = OperatingParameters.values()[answer - 1];
+                isRight = false;
+            } else
                 System.err.println("Данного варианта не существует! Попробуйте еще раз.\n");
         }
         return choice;
     }
 
     TechnicalSpecifications chooseTechnicalSpecifications() {
-        var choice = TechnicalSpecifications.TYPE_NULL;
-        while (choice.equals(TechnicalSpecifications.TYPE_NULL)) {
+        TechnicalSpecifications choice = null;
+        boolean isRight = true;
+        while (isRight) {
             messages.printTechnicalSpecificationsMessage();
             int answer = scanner.nextInt();
-            if (answer == TechnicalSpecifications.values()[0].ordinal() + 1)
-                choice = TechnicalSpecifications.TYPE_3D;
-            else if (answer == TechnicalSpecifications.values()[1].ordinal() + 1)
-                choice = TechnicalSpecifications.TYPE_4D;
-            else
+            if (answer > 0 && answer <= TechnicalSpecifications.getLength()) {
+                choice = TechnicalSpecifications.values()[answer - 1];
+                isRight = false;
+            } else
                 System.err.println("Данного варианта не существует! Попробуйте еще раз.\n");
         }
         return choice;
     }
 
     BackAngle chooseBackAngle() {
-        BackAngle backAngle = BackAngle.NULL_ANGLE;
-        while (backAngle.equals(BackAngle.NULL_ANGLE)) {
+        BackAngle backAngle = null;
+        boolean isRight = true;
+        while (isRight) {
             messages.printBackAngle();
-            for (int i = 0, insertAngle = scanner.nextInt(); i < BackAngle.values().length - 1 && insertAngle >= 140 && insertAngle <= 170; i++)
-                if (insertAngle == BackAngle.values()[i].getValue())
-                    backAngle = BackAngle.values()[i];
-            if (backAngle.equals(BackAngle.NULL_ANGLE))
+            int answer = scanner.nextInt();
+            if (answer > 0 && answer <= BackAngle.getLength()) {
+                backAngle = BackAngle.values()[answer - 1];
+                isRight = false;
+            } else
                 System.err.println("Данного варианта не существует! Попробуйте еще раз.\n");
         }
         return backAngle;
